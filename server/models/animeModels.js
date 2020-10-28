@@ -19,6 +19,10 @@ const AnimeSchema = new Schema({
     show: {
         type: String,
         required: true
+    },
+    watched: {
+        type: String,
+        required: true
     }
 })
 

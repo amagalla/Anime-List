@@ -15,15 +15,23 @@ router.get('/', (req, res) => {
         })
 })
 
+// Posts content to mongoDB
 router.post('/', (req, res, next) => {
-    const { show } = req.body;
-    if (!show) return next("Please fill input fields");
-    Anime.create({ show })
+    const { show, watched } = req.body;
+    if (!show || !watched) return next("Please fill input fields");
+    Anime.create({ show, watched })
         .then(data => {
             res.json(data);
         }).catch(err => {
             res.render({ error: err })
         })
+})
+
+// Delets data from MongoDB
+router.delete('/:id', (req, res, next) => {
+    Anime.findById(req.params.id)
+        .then(data => data.remove())
+        .catch(err => res.status(404))
 })
 
 

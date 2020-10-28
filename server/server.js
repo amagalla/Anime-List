@@ -11,10 +11,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Specify port
-const PORT = 3000;
+const PORT = 5000;
 
 
 // User Routes
+
+// app.get('/', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../src/index.html'));
+// });
 
 app.use('/', shows)
 
