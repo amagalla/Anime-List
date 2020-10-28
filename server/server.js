@@ -2,7 +2,7 @@ const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const shows = require('./routes/animeShows')
+const shows = require('./routes/api')
 
 const app = express();
 
@@ -20,7 +20,9 @@ const PORT = 5000;
 //     res.sendFile(path.resolve(__dirname, '../src/index.html'));
 // });
 
-app.use('/', shows)
+app.get('/getShow', shows)
+app.post('/postShow', shows)
+app.delete('/deleteShow', shows)
 
 app.use('*', (req, res) => {
     res.status(404).send('Not Found');

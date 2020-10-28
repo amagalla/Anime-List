@@ -9,8 +9,9 @@ class Input extends Component {
     }
 
     componentDidMount() {
-        fetch('/')
-            .then(res => res.json())
+        fetch('/getAllShows')
+            // .then(res => res.json())
+            .then(res => console.log(res))
             .then(data => this.setState({ show: data }))
     }
 
