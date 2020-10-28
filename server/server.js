@@ -16,7 +16,11 @@ const PORT = 3000;
 
 // User Routes
 
-// app.get(('/', req, res) => )
+app.use('/', shows)
+
+app.use('*', (req, res) => {
+    res.status(404).send('Not Found');
+});
 
 
 // Start server

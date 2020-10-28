@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-MONGO_URI = 'mongodb + srv://amagalla:animeshows@cluster0.gsmwu.mongodb.net/animeshows?retryWrites=true&w=majority'
+MONGO_URI = 'mongodb+srv://amagalla:animeshows@cluster0.gsmwu.mongodb.net/animeshows?retryWrites=true&w=majority'
 
 mongoose.connect(MONGO_URI, {
     // options for the connect method to parse the URI
@@ -17,10 +17,6 @@ const Schema = mongoose.Schema;
 // Create Schema
 const AnimeSchema = new Schema({
     show: {
-        type: String,
-        required: true
-    },
-    watched: {
         type: String,
         required: true
     }
