@@ -14,9 +14,10 @@ animeController.getShow = (req, res, next) => {
 };
 
 animeController.postShow = (req, res, next) => {
-  const { show, watched } = req.body;
-  if (!show || !watched) return next('Please fill input fields');
-  Anime.create({ show, watched }, (err, data) => {
+  const { show } = req.body;
+  if (!show) show = '';
+  // if (!show) return next('Please fill input fields');
+  Anime.create({ show }, (err, data) => {
     if (err) return next(err);
     return next();
   });

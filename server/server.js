@@ -20,11 +20,23 @@ const PORT = 3001;
 // });
 
 app.use('/', apiRouter);
-// app.use('/api', apiRouter);
+// app.post('/', apiRouter);
 // app.use('/api', apiRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
+});
+
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+
+  const errorObj = Object.assign({}, defaultErr);
+  console.log(errorObj.log);
+  res.status(errorObj.status).send(errorObj.message);
 });
 
 // Start server

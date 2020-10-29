@@ -22,10 +22,6 @@ const AnimeSchema = new Schema({
     type: String,
     required: true,
   },
-  watched: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports = Anime = mongoose.model('anime', AnimeSchema);

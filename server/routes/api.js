@@ -11,7 +11,7 @@ router.get('/getShow', animeController.getShow, (req, res) => {
 
 // Posts content to mongoDB
 router.post('/postShow', animeController.postShow, (req, res, next) => {
-  res.status(200).json({});
+  res.status(200).json('hello');
 });
 
 // Delets data from MongoDB

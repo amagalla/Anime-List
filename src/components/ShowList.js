@@ -2,34 +2,38 @@ import React, { useState, useEffect } from 'react';
 import OutputShow from './OutputShow';
 
 const ShowList = () => {
-  const [show, setShow] = useState([]);
-  const [postShow, setPostShow] = useState('');
+  const [getShow, setgetShow] = useState([]);
+  const [postShow, setPostShow] = useState({ show: '' });
+
+  const { show } = postShow;
 
   useEffect(() => {
     fetch('/getShow')
       .then((res) => res.json())
-      .then((res) => setShow(res));
+      .then((res) => setgetShow(res));
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(postShow);
-    useEffect(() => {
-      fetch('/postShow', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type:': 'application/json',
-        },
-        body: JSON.stringify(postShow),
-      });
-    });
+    // useEffect(() => {
+    fetch('/postShow', {
+      method: 'POST',
+      headers: {
+        // Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postShow),
+    })
+      .then((res) => res.json())
+      .then((data) => setPostShow(data))
+      .catch((err) => console.log(err));
+    // });
   };
 
   return (
     <div className="anime-list">
-      {show &&
-        show.map((element, index) => (
+      {getShow &&
+        getShow.map((element, index) => (
           <OutputShow key={index} index={index} showData={element} />
         ))}
       <form onSubmit={onSubmit}>
@@ -37,8 +41,8 @@ const ShowList = () => {
           type="text"
           className="input"
           placeholder="Add Anime Show"
-          // value={postShow}
-          onChange={(e) => setPostShow(e.target.value)}
+          value={show || ''}
+          onChange={(e) => setPostShow({ ...postShow, show: e.target.value })}
         />
       </form>
     </div>
@@ -46,10 +50,3 @@ const ShowList = () => {
 };
 
 export default ShowList;
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   if (!value) return;
-//   addShow(value);
-//   setValue('');
-// };
