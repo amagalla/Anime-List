@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <>
         <div>
-          <h1 className="anime-title">Anime List</h1>
+          <h1 className="anime-title">Anime Watched List</h1>
         </div>
         <div>
           <ShowList />
