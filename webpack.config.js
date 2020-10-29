@@ -1,57 +1,60 @@
-const path = require('path')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: process.env.NODE_ENV,
-    entry: './src/index.js',
-    output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'index_bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    // Creates `style` nodes from JS strings
-                    'style-loader',
-                    // Translates CSS into CommonJS
-                    'css-loader',
-                    // Compiles Sass to CSS
-                    'sass-loader',
-                ],
-            },
-        ]
-    },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: '/src/index.html'
-        })
+  mode: process.env.NODE_ENV,
+  entry: './src/index.js',
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'index_bundle.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          'style-loader',
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
+        ],
+      },
     ],
-    // devServer: {
-    //     publicPath: '/dist'
-    // }
-    // devServer: {
-    //     // port: 8080,
-    //     hot: true,
-    //     compress: true,
-    //     publicPath: '/dist/',
-    //     proxy: 'http://localhost:3000'
-    //     // {
-    //     //     '/': {
-    //     //         target: 'http://localhost:3000',
-    //     //         // secure: false
-    //     //     },
-    //     // },
-    // },
-}
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: '/src/index.html',
+    }),
+  ],
+  devServer: {
+    // publicPath: '/dist'
+    proxy: {
+      '/': 'http://localhost:3001',
+    },
+  },
+  // devServer: {
+  //     // port: 8080,
+  //     hot: true,
+  //     compress: true,
+  //     publicPath: '/dist/',
+  //     proxy: 'http://localhost:3000'
+  //     // {
+  //     //     '/': {
+  //     //         target: 'http://localhost:3000',
+  //     //         // secure: false
+  //     //     },
+  //     // },
+  // },
+};
 
 // const webpack = require('webpack');
 // const path = require('path');
@@ -101,19 +104,19 @@ module.exports = {
 //     //   // Enable importing JS / JSX files without specifying their extension
 //     //   extensions: ['.js', '.jsx'],
 //     // },
-    // devServer: {
-    //     // port: 8080,
-    //     // hot: true,
-    //     // compress: true,
-    //     // publicPath: '/build/',
-    //     proxy:
-    //     {
-    //         '/': {
-    //             target: 'http://localhost:3000',
-    //             // secure: false
-    //         },
-    //     },
-    // },
+// devServer: {
+//     // port: 8080,
+//     // hot: true,
+//     // compress: true,
+//     // publicPath: '/build/',
+//     proxy:
+//     {
+//         '/': {
+//             target: 'http://localhost:3000',
+//             // secure: false
+//         },
+//     },
+// },
 // };
 
 // const path = require('path')
