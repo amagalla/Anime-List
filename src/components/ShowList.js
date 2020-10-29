@@ -1,5 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import OutputShow from './OutputShow';
+// import OutputShow from './OutputShow';
+
+const OutputShow = ({ showData, index, deleteShow }) => {
+  return (
+    <div className="showOutput">
+      {showData.show}
+      <div>
+        <button
+          className="delete-button"
+          onClick={() => deleteShow(index, showData._id)}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const ShowList = () => {
   const [getShow, setgetShow] = useState([]);
@@ -30,11 +46,24 @@ const ShowList = () => {
     // });
   };
 
+  const deleteShow = (index, id) => {
+    fetch('/deleteShow/' + id, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json()) // or res.json()
+      .then((res) => console.log(res));
+  };
+
   return (
     <div className="anime-list">
       {getShow &&
         getShow.map((element, index) => (
-          <OutputShow key={index} index={index} showData={element} />
+          <OutputShow
+            key={index}
+            index={index}
+            showData={element}
+            deleteShow={deleteShow}
+          />
         ))}
       <form onSubmit={onSubmit}>
         <input

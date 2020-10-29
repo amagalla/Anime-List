@@ -32,17 +32,20 @@
   max-width: 300px;
   position: relative;
   animation-name: lists;
-  animation-duration: 2.5s;
+  animation-delay: 2s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
   top: 200px;
+  margin: auto;
+  opacity: 0;
 }
 
 @keyframes lists {
   0% {
-    left: -1000px;
+    opacity: 0;
   }
   100% {
-    left: 42%;
+    opacity: 100%;
   }
 }
 
@@ -62,9 +65,25 @@
   width: 100%;
   box-sizing: border-box;
   border: 0;
-  border-radius: 4px;
   box-shadow: none;
   padding: 1rem;
   height: 2.25em;
   background: #fff;
+}
+
+.input:focus {
+  outline-width: 0;
+}
+.delete-button {
+  background-color: white;
+  border: none;
+  height: 3em;
+}
+
+.delete-button:hover {
+  color: red;
+}
+
+.delete-button:focus {
+  outline-width: 0;
 }
