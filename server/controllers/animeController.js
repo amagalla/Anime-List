@@ -7,14 +7,11 @@ animeController.getShow = (req, res, next) => {
     if (err) {
       return next(err);
     } else {
-      console.log(data);
       res.locals.getShow = data;
       return next();
     }
   });
 };
-
-//res.locals.postShow
 
 animeController.postShow = (req, res, next) => {
   const { show, watched } = req.body;

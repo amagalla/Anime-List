@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Input from './Input.js';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import ShowList from './ShowList';
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <>
         <div>
-          <h1>Anime List</h1>
-          <Input />
+          <h1 className="anime-title">Anime List</h1>
         </div>
-      </Router>
+        <div>
+          <ShowList />
+        </div>
+      </>
     );
   }
 }

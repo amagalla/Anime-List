@@ -180,3 +180,5 @@ module.exports = {
 //     "build": "cross-env NODE_ENV=production webpack",
 //     "dev": "cross-env NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack serve --mode development --env development --open"
 //   },
+
+// "server": "nodemon server/server.js",
